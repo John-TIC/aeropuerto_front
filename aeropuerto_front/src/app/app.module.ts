@@ -12,12 +12,19 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
+import {DropdownModule} from 'primeng/dropdown';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { PilotoComponent } from './modulos/piloto/piloto.component';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {AeropuertoService} from "./providers/aeropuerto.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    PilotoComponent
   ],
     imports: [
         BrowserModule,
@@ -33,9 +40,13 @@ import {TableModule} from 'primeng/table';
         InputTextModule,
         ButtonModule,
         TableModule,
+        DialogModule,
+        DropdownModule,
+        OverlayPanelModule,
+        TabMenuModule,
 
     ],
-  providers: [ApiService],
+  providers: [ApiService, AeropuertoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

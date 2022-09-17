@@ -1,11 +1,18 @@
 <div style="padding: 38px">
   <p-table [value]="aviones">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Aviones
+        <p-button (click)="form_avion.reset();ver_formulario_avion=true" label="Adicionar" icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th>Código</th>
         <th>Tipo</th>
         <th>Ciudad Base</th>
         <th>Marca</th>
+        <th>Acción</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-avion>
@@ -14,7 +21,36 @@
         <td>{{avion.tipo_avion}}</td>
         <td>{{avion.ciudad_base}}</td>
         <td>{{avion.marca}}</td>
+        <td><p-button (click)="llenar_for_avion(avion);ver_formulario_avion=true" label="Editar"></p-button></td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+<p-dialog header="Formulario de Avión" [(visible)]="ver_formulario_avion">
+  <form [formGroup]="form_avion">
+
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-4">
+        <input type="text" formControlName="codigo_avion" pInputText placeholder="Código Avión">
+      </div>
+      <div class="col-12 md:col-4">
+        <select formControlName="tipo_avion" pInputText>
+          <option value="Comercial">Comercial</option>
+          <option value="Carga">Carga</option>
+        </select>
+      </div>
+      <div class="col-12 md:col-4">
+        <input type="text" formControlName="ciudad_base" pInputText placeholder="Ciudad Base">
+      </div>
+      <div class="col-12 md:col-4">
+        <select formControlName="marca" pInputText>
+          <option value="Boeing">Boeing</option>
+          <option value="AirBus">AirBus</option>
+          <option value="Embraer">Embraer</option>
+          <option value="Tupolev">Tupolev</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <p-button (click)="guardar_actualizar_avion()" label="Guardar" icon="pi pi-refresh"></p-button>
+</p-dialog>

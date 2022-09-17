@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 
+import {MenuItem} from 'primeng/api';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +22,13 @@ export class ApiService {
   header_token:any
   options_token:any
 
+  items: MenuItem[] = [
+    {label: 'Aviones', icon: 'pi pi-fw pi-android'},
+    {label: 'Pilotos', icon: 'pi pi-fw pi-user'},
+    {label: 'Home', icon: 'pi pi-fw pi-home'},
+  ];
+
+
   constructor(private http:HttpClient) { }
 
   /* Método que va a recibir el usuario y contraseña */
@@ -32,12 +42,23 @@ export class ApiService {
     let url = `${this.base_url+'/'+ endpoint +'/'}`;
     return this.http.get(url, this.options_token).pipe(catchError(this.handleError<any>()))
   }
+  /* Método para establecer la conexión */
+  add(endpoint:string, data:any) {
+    let url = `${this.base_url+'/'+ endpoint +'/'}`;
+    let dJson = JSON.stringify(data);  /* Convierte la data a formato JSON antes de enviarla a la API */
+    return this.http.post(url, dJson, this.options_token).pipe(catchError(this.handleError<any>()))
+  }
+
+  update(endpoint:string, id:any, data:any) {
+    let url = `${this.base_url+'/'+ endpoint +'/'+id+'/'}`;  // se adiciona el parametro id
+    let dJson = JSON.stringify(data); // Convierte la data a formato JSON antes de enviarla
+    return this.http.patch(url, dJson, this.options_token).pipe(catchError(this.handleError<any>()))
+  }
 
   /* Método que adiciona token a un header */
   crear_header_token(token:string){
     this.header_token = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Token '+token)
     this.options_token = {headers:this.header_token};
-
   }
 
   /* Toma el error lo convierte en cadena y lo presenta por pantalla. */

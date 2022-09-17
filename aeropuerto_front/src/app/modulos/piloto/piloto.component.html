@@ -1,0 +1,40 @@
+<div style="padding: 38px">
+  <p-table [value]="pilotos">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Aviones
+        <p-button (click)="form_piloto.reset();ver_formulario_piloto=true" label="Adicionar" icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Código Piloto</th>
+        <th>Nombre Piloto</th>
+        <th>Horas de Vuelo</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-piloto>
+      <tr>
+        <td>{{piloto.codigo_piloto}}</td>
+        <td>{{piloto.nombre_piloto}}</td>
+        <td>{{piloto.horas_vuelo_piloto}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Formulario de Piloto" [(visible)]="ver_formulario_piloto">
+  <form [formGroup]="form_piloto">
+
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-4">
+        <input type="text" formControlName="codigo_piloto" pInputText placeholder="Código Piloto">
+      </div>
+      <div class="col-12 md:col-4">
+        <input type="text" formControlName="nombre_piloto" pInputText placeholder="Nombre Piloto">
+      </div>
+      <div class="col-12 md:col-4">
+        <input type="text" formControlName="horas_vuelo_piloto" pInputText placeholder="Horas de Vuelo">
+      </div>    </div>
+  </form>
+  <p-button (click)="guardar_piloto()" label="Guardar" icon="pi pi-refresh"></p-button>
+</p-dialog>
