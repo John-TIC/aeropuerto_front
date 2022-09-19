@@ -4,9 +4,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 
-import {MenuItem} from 'primeng/api';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,13 +18,6 @@ export class ApiService {
   /* todo el resto de operaciones sobre las url's */
   header_token:any
   options_token:any
-
-  items: MenuItem[] = [
-    {label: 'Aviones', icon: 'pi pi-fw pi-android'},
-    {label: 'Pilotos', icon: 'pi pi-fw pi-user'},
-    {label: 'Home', icon: 'pi pi-fw pi-home'},
-  ];
-
 
   constructor(private http:HttpClient) { }
 

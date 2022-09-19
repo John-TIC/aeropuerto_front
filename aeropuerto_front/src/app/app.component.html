@@ -1,2 +1,4 @@
-<!-- <p-tabMenu *ngIf="api.usuario" [model]="api   aeropuerto.items"></p-tabMenu>  -->
+<p-tabMenu *ngIf="api.usuario" [model]="aeropuerto.items"></p-tabMenu>
+<!-- la variable usuario definida en api funge como switch para indicar si ya hay un usuario en la app
+     y sólo en ese caso desplegará el menú items definido en aeropuerto -->
 <router-outlet></router-outlet>

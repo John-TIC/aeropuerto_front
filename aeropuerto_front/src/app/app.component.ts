@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AeropuertoService} from "./providers/aeropuerto.service";
+import {ApiService} from "./providers/api.service";
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(public aeropuerto:AeropuertoService, public api:ApiService) {
+  }
 
 }
 

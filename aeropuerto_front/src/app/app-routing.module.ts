@@ -7,6 +7,7 @@ import {PilotoComponent} from "./modulos/piloto/piloto.component";
 /* archivo de rutas con un arreglo de rutas
    path contiene la ruta a la que voy a apuntarle y component indica el componente que va a manejarlo */
 const routes: Routes = [
+  // la ruta para "login" debe ser las últimas
   {path:'inicio',component:InicioComponent},
   {path:'piloto', component:PilotoComponent},
   {path:'login',component:LoginComponent},

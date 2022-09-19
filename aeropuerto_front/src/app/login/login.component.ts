@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
         data=>{
           if (data != undefined) {
             alert('El usuario ha ingresado correctamente al sistema')
+            // Se guarda el usuario que ingresó al sistema en la variable usuario
+            this.api.usuario = data
             this.api.crear_header_token(data.token)
             this.router.navigate(['/inicio'])
           }else {
